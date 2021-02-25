@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>8. K8S 之常用命令 | 海龟先生</title><meta name="description" content="K8S 是个好东西"><meta name="keywords" content="K8S"><meta name="author" content="海龟先生"><meta name="copyright" content="海龟先生"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="http://haiguixiansheng.org.cn/2020/04/15/8. K8S之常用命令/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="8. K8S 之常用命令"><meta name="twitter:description" content="K8S 是个好东西"><meta name="twitter:image" content="http://haiguixiansheng.org.cn/img/k8s.jpg"><meta property="og:type" content="article"><meta property="og:title" content="8. K8S 之常用命令"><meta property="og:url" content="http://haiguixiansheng.org.cn/2020/04/15/8. K8S之常用命令/"><meta property="og:site_name" content="海龟先生"><meta property="og:description" content="K8S 是个好东西"><meta property="og:image" content="http://haiguixiansheng.org.cn/img/k8s.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="prev" title="django使用锁" href="http://haiguixiansheng.org.cn/2020/10/12/django使用锁/"><link rel="next" title="7. K8S之安装" href="http://haiguixiansheng.org.cn/2020/04/13/7. K8S之安装/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: '添加书签',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天'
+
+  
+}</script></head><body><canvas class="fireworks"></canvas><div id="web_bg"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#8-K8S-之常用命令"><span class="toc-number">1.</span> <span class="toc-text">8. K8S 之常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-查看类命令"><span class="toc-number">1.1.</span> <span class="toc-text">1. 查看类命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-操作类命令"><span class="toc-number">1.2.</span> <span class="toc-text">2. 操作类命令</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/k8s.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">海龟先生</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad avatar_img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">47</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">6</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title"><div class="posttitle">8. K8S 之常用命令</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-04-15<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2021-02-25</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Kubernetes/">Kubernetes</a></span><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">767</span><span class="post-meta__separator">|</span><span>阅读时长: 3 分钟</span><span class="post-meta__separator">|</span><span>阅读量: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="8-K8S-之常用命令"><a href="#8-K8S-之常用命令" class="headerlink" title="8. K8S 之常用命令"></a>8. K8S 之常用命令</h1><h2 id="1-查看类命令"><a href="#1-查看类命令" class="headerlink" title="1. 查看类命令"></a>1. 查看类命令</h2><p>获取节点相应服务的信息<br>kubectl get nodes</p>
+<p>如果需要按selector名来查找相应的pod信息， 可以通过以下命令查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod --selector name=tomcat</span><br></pre></td></tr></table></figure>
+
+<p>查看K8S集群信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure>
+
+<p>查看各组件信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -s http://localhost:8080 get componentstatuses</span><br></pre></td></tr></table></figure>
+
+<p>查看pods所在的运行节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -o wide</span><br></pre></td></tr></table></figure>
+
+<p>如果需要通过某个命名空间查找节点信息， 可以通过以下命令查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -o wide -n kube-system</span><br><span class="line">-o wide 选项表示展示更多的Pod节点信息</span><br><span class="line">-n &lt;命名空间&gt; 表示查询该命名空间下的Pod节点信息</span><br></pre></td></tr></table></figure>
+
+<p>如果需要查找所有命名空间下的所有Pod信息， 可以通过以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods --all-namespaces</span><br><span class="line">或</span><br><span class="line">kubectl get pods  --all-namespaces -o wide</span><br><span class="line"><span class="meta">#</span><span class="bash"> -o wide表示列出更多的详细信息 很多命令都通用</span></span><br></pre></td></tr></table></figure>
+
+<p>查看pods定义的详细信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -o yaml</span><br></pre></td></tr></table></figure>
+
+<p>查看运行的pod的环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec &lt;pod名称&gt; env</span><br></pre></td></tr></table></figure>
+
+<p>查看指定pod的日志</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs -f pods/&lt;pod名称&gt; -n kube-system</span><br></pre></td></tr></table></figure>
+
+<p>查看集群节点信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br></pre></td></tr></table></figure>
+
+<p>如果需要查看集群名称为zone下的集群节点信息, 可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes -l zone</span><br></pre></td></tr></table></figure>
+
+<p>查看某个命名空间(如kube-system)下的所有service</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services kubernetes-dashboard -n kube-system</span><br></pre></td></tr></table></figure>
+
+<p>查看某个命名空间(如kube-system)下的所有发布信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get deployment kubernetes-dashboard -n kube-system</span><br></pre></td></tr></table></figure>
+
+<p>查看资源信息<br>根据service名查看资源信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe service/kubernetes-dashboard --namespace="kube-system"</span><br></pre></td></tr></table></figure>
+
+<p>根据pod名称查看资源信息<br>kubectl describe pods/kubernetes-dashboard-349859023-g6q8c –namespace=”kube-system”<br>kubectl describe pod nginx-772ai</p>
+<h2 id="2-操作类命令"><a href="#2-操作类命令" class="headerlink" title="2. 操作类命令"></a>2. 操作类命令</h2><p>创建资源</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f &lt;文件名.yaml&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>重建资源</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl replace -f &lt;文件名 [--force]</span><br></pre></td></tr></table></figure>
+
+<p>删除资源<br>强制删除某个文件名命名节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete -f &lt;文件名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>删除某个Pod命令节点 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete pod &lt;pod名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>删除某个Replication Controller命名节点 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete rc &lt;rc名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>删除某个服务命名节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete service &lt;service名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>删除所有Pod节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete pod --all</span><br></pre></td></tr></table></figure>
+
+<p>动态伸缩操作<br>为Replcation Controller名称为nginx动态扩展5个服务节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale rc nginx --replicas=5</span><br></pre></td></tr></table></figure>
+
+<p>为redis-slave部署5 个服务节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale deployment redis-slave --replicas=5</span><br></pre></td></tr></table></figure>
+
+<p>为redis-slave-deployment.yaml部署脚本下的服务扩展2个节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale --replicas=2 -f redis-slave-deployment.yaml</span><br></pre></td></tr></table></figure>
+
+<p>进入Pod节点容器内进行操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -it redis-master-1033017107-q47hh /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>Pod节点容器标签操作<br>增加Node节点label值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label nodes node1 zone=north</span><br></pre></td></tr></table></figure>
+
+<p>增加Pod的label值 [key]=[value]</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label pod &lt;pod-name&gt; role=master</span><br></pre></td></tr></table></figure>
+
+<p>删除Pod的label值（使用“ - ”减号相连）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label pod &lt;pod-name&gt; role- # role 是某个label的key</span><br></pre></td></tr></table></figure>
+
+<p>修改Pod的label值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label pod redis-master-1033017107-q47hh role=backend --overwrite</span><br></pre></td></tr></table></figure>
+
+<p>滚动升级<br>配置文件滚动升级</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rolling-update redis-master -f redis-master-controller-v2.yaml</span><br></pre></td></tr></table></figure>
+
+<p>命令升级</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rolling-update redis-master --image=redis-master:2.0</span><br></pre></td></tr></table></figure>
+
+<p>Pod版本回滚</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rolling-update redis-master --image=redis-master:1.0 --rollback</span><br></pre></td></tr></table></figure>
+
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">海龟先生</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://haiguixiansheng.org.cn/2020/04/15/8. K8S之常用命令/">http://haiguixiansheng.org.cn/2020/04/15/8. K8S之常用命令/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://haiguixiansheng.org.cn">海龟先生</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/K8S/">K8S    </a></div><div class="post_share"><div class="social-share" data-image="/img/k8s.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/12/django使用锁/"><img class="prev_cover lozad" data-src="/img/django.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>django使用锁</span></div></a></div><div class="next-post pull-right"><a href="/2020/04/13/7. K8S之安装/"><img class="next_cover lozad" data-src="/img/k8s.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>7. K8S之安装</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/04/13/7. K8S之安装/" title="7. K8S之安装"><img class="relatedPosts_cover lozad" data-src="/img/k8s.jpg"><div class="relatedPosts_title">7. K8S之安装</div></a></div><div class="relatedPosts_item"><a href="/2020/03/28/5. K8S之Pod(2)-生命周期/" title="5. K8S之Pod(2)-生命周期"><img class="relatedPosts_cover lozad" data-src="/img/k8s.jpg"><div class="relatedPosts_title">5. K8S之Pod(2)-生命周期</div></a></div><div class="relatedPosts_item"><a href="/2020/03/27/4. K8S之Pod(1)-基础概念/" title="4. K8S之Pod(1)-基础概念"><img class="relatedPosts_cover lozad" data-src="/img/k8s.jpg"><div class="relatedPosts_title">4. K8S之Pod(1)-基础概念</div></a></div><div class="relatedPosts_item"><a href="/2020/03/22/3. K8S之组件说明/" title="3. K8S之组件说明"><img class="relatedPosts_cover lozad" data-src="/img/k8s.jpg"><div class="relatedPosts_title">3. K8S之组件说明</div></a></div><div class="relatedPosts_item"><a href="/2020/03/22/2. K8S之知识图谱/" title="2. K8S之知识图谱"><img class="relatedPosts_cover lozad" data-src="/img/k8s.jpg"><div class="relatedPosts_title">2. K8S之知识图谱</div></a></div><div class="relatedPosts_item"><a href="/2020/03/21/1. K8S之课程简介/" title="1. K8S之课程简介"><img class="relatedPosts_cover lozad" data-src="/img/k8s.jpg"><div class="relatedPosts_title">1. K8S之课程简介</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="lv-container" data-id="city" data-uid="MTAyMC80NjY1Ny8yMzE2Nw=="><script>(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');</script></div></div></div></div><footer><div id="footer"><div class="copyright">&copy;2018 - 2021 By 海龟先生</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://www.cnblogs.com/haiguixiansheng/">blog</a>!</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-book" id="readmode" title="阅读模式"> </i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换">繁</a><i class="nightshift fa fa-moon-o" id="nightshift" title="夜间模式"></i></section><div class=" " id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">目录</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#8-K8S-之常用命令"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">8. K8S 之常用命令</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-查看类命令"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">1. 查看类命令</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-操作类命令"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">2. 操作类命令</span></a></li></ol></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script color="0,0,255" opacity="0.7" zindex="-1" count="99" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN/js/canvas-nest.js"></script><script src="/js/activate-power-mode.js"></script><script>POWERMODE.colorful = true; // make power mode colorful
+POWERMODE.shake = true; // turn off shake
+document.body.addEventListener('input', POWERMODE);
+</script><script src="/js/tw_cn.js"></script><script>translateInitilization()
+
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();</script></body></html>
